@@ -114,8 +114,8 @@ module xenon_mounting_posts(){
     
     
     //reinforcement cubes
-    reinforcement_cube_extra_x = 2;
-    reinforcement_cube_extra_y = 3;
+    reinforcement_cube_extra_x = 1.5;
+    reinforcement_cube_extra_y = 2.5;
     
     translate([outer_origin_x, outer_origin_y - 1, outer_z + xenon_post_outer_height/2]) cube([xenon_post_outer_diameter + reinforcement_cube_extra_x,xenon_post_outer_diameter + reinforcement_cube_extra_y,xenon_post_outer_height], center=true);
     translate([outer_origin_x + xenon_post_distance_apart_x, outer_origin_y - 1, outer_z + xenon_post_outer_height/2]) cube([xenon_post_outer_diameter + reinforcement_cube_extra_x,xenon_post_outer_diameter + reinforcement_cube_extra_y,xenon_post_outer_height], center=true);
@@ -189,8 +189,12 @@ module led_window(){
 }
 
 module xenon_holder(){
-    translate([-1*(total_internal_width/2 - xenon_holder_width / 2 - xenon_holder_origin_x), -1 *(total_internal_length/2 - xenon_holder_length / 2  - xenon_holder_origin_y),-1 * (total_internal_height/2 - wall_thickness - xenon_holder_height/2 - xenon_holder_origin_z)]) cube([xenon_holder_width,xenon_holder_length,xenon_holder_height], center=true);
-translate([1*(total_internal_width/2 - xenon_holder_width / 2 - xenon_holder_origin_x), -1 *(total_internal_length/2 - xenon_holder_length / 2  - xenon_holder_origin_y),-1 * (total_internal_height/2 - wall_thickness - xenon_holder_height/2 - xenon_holder_origin_z)]) cube([xenon_holder_width,xenon_holder_length,xenon_holder_height], center=true);
+    xenon_holder_left_extra_width = 0.4;
+    
+    translate([-1*(total_internal_width/2 - xenon_holder_width / 2 - xenon_holder_origin_x - xenon_holder_left_extra_width/2), -1 *(total_internal_length/2 - xenon_holder_length / 2  - xenon_holder_origin_y),-1 * (total_internal_height/2 - wall_thickness - xenon_holder_height/2 - xenon_holder_origin_z)]) cube([xenon_holder_width + xenon_holder_left_extra_width,xenon_holder_length,xenon_holder_height], center=true);
+    
+    
+    translate([1*(total_internal_width/2 - xenon_holder_width / 2 - xenon_holder_origin_x), -1 *(total_internal_length/2 - xenon_holder_length / 2  - xenon_holder_origin_y),-1 * (total_internal_height/2 - wall_thickness - xenon_holder_height/2 - xenon_holder_origin_z)]) cube([xenon_holder_width,xenon_holder_length,xenon_holder_height], center=true);
 }
 
 
