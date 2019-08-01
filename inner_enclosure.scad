@@ -1,5 +1,8 @@
 $fn = 100;
 
+wall_thickness = 1;
+
+
 xenon_length = 52.2;
 
 xenon_post_distance_apart_x = 18;
@@ -31,7 +34,6 @@ battery_holder_flaps_offset_y = 10;
 space_between_battery_and_led_holder = 2;
     
 led_holder_flaps_thickness = battery_thickness + space_between_battery_and_led_holder;
-// led_holder_flaps_width = 3;
 led_holder_flaps_width = 5.25;
 led_holder_flaps_length = 30;
 
@@ -51,12 +53,25 @@ window_distance_from_wall_y = button_post_distance_from_wall_y;
 xenon_holder_length = 14;
 xenon_holder_width = 2;
 xenon_holder_height = 1;
-xenon_holder_origin_z = 8;
+xenon_holder_origin_z = 8.2;
 xenon_holder_origin_x = battery_holder_flaps_width;
 xenon_holder_origin_y = 22;
 
+battery_top_holder_length = 15;
+battery_top_holder_width = 2;
+battery_top_holder_height = 1;
+battery_top_holder_origin_z = led_holder_flaps_thickness + battery_holder_flaps_thickness - wall_thickness;
+battery_top_holder_origin_x = led_holder_flaps_width;
+battery_top_holder_origin_y = 35;
 
-wall_thickness = 1;
+battery_slide_cutout_height = 20;
+battery_slide_cutout_width = 36;
+battery_slide_cutout_origin_y = -1 * (total_internal_length / 2);
+battery_slide_cutout_origin_z = -1 * (total_internal_height / 2 - wall_thickness - battery_slide_cutout_height/2);
+battery_slide_cutout_distance_from_bottom = 16;
+
+
+
 
 module main_enclosure(){
     difference(){
@@ -78,6 +93,9 @@ module main_enclosure(){
         button_cutout();
         
         led_window();
+        
+        // battery slide cutout
+        translate([0,battery_slide_cutout_origin_y,battery_slide_cutout_origin_z + battery_slide_cutout_distance_from_bottom]) cube([battery_slide_cutout_width, wall_thickness + 2, battery_slide_cutout_height], center=true);
     }
 }
 
@@ -93,6 +111,17 @@ module xenon_mounting_posts(){
     translate([outer_origin_x + xenon_post_distance_apart_x, outer_origin_y, outer_z]) cylinder(h=xenon_post_outer_height, d=xenon_post_outer_diameter);
     translate([outer_origin_x, outer_origin_y + xenon_post_distance_apart_y, outer_z]) cylinder(h=xenon_post_outer_height, d=xenon_post_outer_diameter);
     translate([outer_origin_x + xenon_post_distance_apart_x, outer_origin_y + xenon_post_distance_apart_y, outer_z]) cylinder(h=xenon_post_outer_height, d=xenon_post_outer_diameter);
+    
+    
+    //reinforcement cubes
+    reinforcement_cube_extra_x = 2;
+    reinforcement_cube_extra_y = 3;
+    
+    translate([outer_origin_x, outer_origin_y - 1, outer_z + xenon_post_outer_height/2]) cube([xenon_post_outer_diameter + reinforcement_cube_extra_x,xenon_post_outer_diameter + reinforcement_cube_extra_y,xenon_post_outer_height], center=true);
+    translate([outer_origin_x + xenon_post_distance_apart_x, outer_origin_y - 1, outer_z + xenon_post_outer_height/2]) cube([xenon_post_outer_diameter + reinforcement_cube_extra_x,xenon_post_outer_diameter + reinforcement_cube_extra_y,xenon_post_outer_height], center=true);
+    translate([outer_origin_x, outer_origin_y + xenon_post_distance_apart_y, outer_z + xenon_post_outer_height/2]) cube([xenon_post_outer_diameter + reinforcement_cube_extra_x,xenon_post_outer_diameter + reinforcement_cube_extra_y,xenon_post_outer_height], center=true);
+    translate([outer_origin_x + xenon_post_distance_apart_x, outer_origin_y + xenon_post_distance_apart_y, outer_z + xenon_post_outer_height/2]) cube([xenon_post_outer_diameter + reinforcement_cube_extra_x,xenon_post_outer_diameter + reinforcement_cube_extra_y,xenon_post_outer_height], center=true);
+    
 
     
     // inner posts
@@ -165,9 +194,16 @@ translate([1*(total_internal_width/2 - xenon_holder_width / 2 - xenon_holder_ori
 }
 
 
+module battery_top_holder(){
+    translate([-1*(total_internal_width/2 - battery_top_holder_width/2 - battery_top_holder_origin_x), -1 *(total_internal_length/2 - battery_top_holder_length / 2  - battery_top_holder_origin_y),-1 * (total_internal_height/2 - wall_thickness - battery_top_holder_height/2 - battery_top_holder_origin_z)]) cube([battery_top_holder_width,battery_top_holder_length,battery_top_holder_height], center=true);
+translate([1*(total_internal_width/2 - battery_top_holder_width / 2 - battery_top_holder_origin_x), -1 *(total_internal_length/2 - battery_top_holder_length / 2  - battery_top_holder_origin_y),-1 * (total_internal_height/2 - wall_thickness - battery_top_holder_height/2 - battery_top_holder_origin_z)]) cube([battery_top_holder_width,battery_top_holder_length,battery_top_holder_height], center=true);
+}
+
+
 main_enclosure();
 xenon_mounting_posts();
 battery_holder();
 led_holder();
 button_post();
 xenon_holder();
+battery_top_holder();
