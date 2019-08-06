@@ -53,7 +53,7 @@ window_distance_from_wall_y = button_post_distance_from_wall_y;
 xenon_holder_length = 14;
 xenon_holder_width = 2;
 xenon_holder_height = 1;
-xenon_holder_origin_z = 8.2;
+xenon_holder_origin_z = 8;
 xenon_holder_origin_x = battery_holder_flaps_width;
 xenon_holder_origin_y = 22;
 
@@ -74,7 +74,7 @@ reset_hole_diameter = 1;
 reset_hole_distance_from_wall_x = 27;
 reset_hole_distance_from_wall_y = button_post_distance_from_wall_y;
 
-led_ring_antigravity_shelf_height = 2;
+led_ring_antigravity_shelf_height = 5;
 led_ring_antigravity_shelf_length = 1;
 led_ring_antigravity_shelf_width = 3;
 led_ring_antigravity_shelf_distance_from_top = 45;
@@ -84,13 +84,19 @@ led_ring_antigravity_shelf_top_length = 2;
 led_ring_antigravity_shelf_top_width = 3;
 led_ring_antigravity_shelf_top_distance_from_top = 43;
 
-translate([total_internal_width/2 - led_ring_antigravity_shelf_width/2, total_internal_length/2 - led_ring_antigravity_shelf_length/2 - led_ring_antigravity_shelf_distance_from_top, total_internal_height/2 - led_ring_antigravity_shelf_height/2]) cube([led_ring_antigravity_shelf_width,led_ring_antigravity_shelf_length,led_ring_antigravity_shelf_height], center=true);
+led_ring_top_holder_height = 1;
+led_ring_top_holder_length = 2;
+led_ring_top_holder_width = 10;
 
-translate([total_internal_width/2 - led_ring_antigravity_shelf_top_width/2, total_internal_length/2 - led_ring_antigravity_shelf_top_length/2 - led_ring_antigravity_shelf_top_distance_from_top, total_internal_height/2 - led_ring_antigravity_shelf_top_height/2]) cube([led_ring_antigravity_shelf_top_width,led_ring_antigravity_shelf_top_length,led_ring_antigravity_shelf_top_height], center=true);
 
-translate([-1*(total_internal_width/2 - led_ring_antigravity_shelf_width/2), total_internal_length/2 - led_ring_antigravity_shelf_length/2 - led_ring_antigravity_shelf_distance_from_top, total_internal_height/2 - led_ring_antigravity_shelf_height/2]) cube([led_ring_antigravity_shelf_width,led_ring_antigravity_shelf_length,led_ring_antigravity_shelf_height], center=true);
+lanyard_slot_height = 12;
+lanyard_slot_length = wall_thickness * 2;
+lanyard_slot_width = 4;
+lanyard_slot_origin_z = 6;
+lanyard_slot_origin_x = 6;
 
-translate([-1*(total_internal_width/2 - led_ring_antigravity_shelf_top_width/2), total_internal_length/2 - led_ring_antigravity_shelf_top_length/2 - led_ring_antigravity_shelf_top_distance_from_top, total_internal_height/2 - led_ring_antigravity_shelf_top_height/2]) cube([led_ring_antigravity_shelf_top_width,led_ring_antigravity_shelf_top_length,led_ring_antigravity_shelf_top_height], center=true);
+
+
 
 
 module main_enclosure(){
@@ -119,6 +125,11 @@ module main_enclosure(){
         
         // reset hole
         translate([-1*(total_internal_width / 2 - wall_thickness - reset_hole_distance_from_wall_x), -1*(total_internal_length / 2 - wall_thickness - reset_hole_distance_from_wall_y) , -1*(total_internal_height/2 + wall_thickness/2)]) cylinder(d=reset_hole_diameter, h=wall_thickness * 2);
+        
+        // lanyard holes
+        translate([-1*(total_internal_width/2 - lanyard_slot_width/2 - lanyard_slot_origin_x), total_internal_length/2 + wall_thickness/2, -1*(total_internal_height/2 - lanyard_slot_height/2 - lanyard_slot_origin_z)]) cube([lanyard_slot_width, lanyard_slot_length, lanyard_slot_height], center=true);
+        
+        translate([total_internal_width/2 - lanyard_slot_width/2 - lanyard_slot_origin_x, total_internal_length/2 + wall_thickness/2, -1*(total_internal_height/2 - lanyard_slot_height/2 - lanyard_slot_origin_z)]) cube([lanyard_slot_width, lanyard_slot_length, lanyard_slot_height], center=true);
     }
 }
 
@@ -227,6 +238,18 @@ translate([1*(total_internal_width/2 - battery_top_holder_width / 2 - battery_to
 }
 
 
+module led_ring_antigravity_shelf(){
+    translate([0,total_internal_length/2 - led_ring_top_holder_length/2,total_internal_height/2 - led_ring_top_holder_height/2]) cube([led_ring_top_holder_width, led_ring_top_holder_length, led_ring_top_holder_height], center=true);
+
+    translate([total_internal_width/2 - led_ring_antigravity_shelf_width/2, total_internal_length/2 - led_ring_antigravity_shelf_length/2 - led_ring_antigravity_shelf_distance_from_top, total_internal_height/2 - led_ring_antigravity_shelf_height/2]) cube([led_ring_antigravity_shelf_width,led_ring_antigravity_shelf_length,led_ring_antigravity_shelf_height], center=true);
+
+    translate([total_internal_width/2 - led_ring_antigravity_shelf_top_width/2, total_internal_length/2 - led_ring_antigravity_shelf_top_length/2 - led_ring_antigravity_shelf_top_distance_from_top, total_internal_height/2 - led_ring_antigravity_shelf_top_height/2]) cube([led_ring_antigravity_shelf_top_width,led_ring_antigravity_shelf_top_length,led_ring_antigravity_shelf_top_height], center=true);
+
+    translate([-1*(total_internal_width/2 - led_ring_antigravity_shelf_width/2), total_internal_length/2 - led_ring_antigravity_shelf_length/2 - led_ring_antigravity_shelf_distance_from_top, total_internal_height/2 - led_ring_antigravity_shelf_height/2]) cube([led_ring_antigravity_shelf_width,led_ring_antigravity_shelf_length,led_ring_antigravity_shelf_height], center=true);
+
+    translate([-1*(total_internal_width/2 - led_ring_antigravity_shelf_top_width/2), total_internal_length/2 - led_ring_antigravity_shelf_top_length/2 - led_ring_antigravity_shelf_top_distance_from_top, total_internal_height/2 - led_ring_antigravity_shelf_top_height/2]) cube([led_ring_antigravity_shelf_top_width,led_ring_antigravity_shelf_top_length,led_ring_antigravity_shelf_top_height], center=true);
+}
+
 main_enclosure();
 xenon_mounting_posts();
 battery_holder();
@@ -234,3 +257,4 @@ led_holder();
 button_post();
 xenon_holder();
 battery_top_holder();
+led_ring_antigravity_shelf();
