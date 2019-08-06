@@ -74,6 +74,24 @@ reset_hole_diameter = 1;
 reset_hole_distance_from_wall_x = 27;
 reset_hole_distance_from_wall_y = button_post_distance_from_wall_y;
 
+led_ring_antigravity_shelf_height = 2;
+led_ring_antigravity_shelf_length = 1;
+led_ring_antigravity_shelf_width = 3;
+led_ring_antigravity_shelf_distance_from_top = 45;
+
+led_ring_antigravity_shelf_top_height = 1;
+led_ring_antigravity_shelf_top_length = 2;
+led_ring_antigravity_shelf_top_width = 3;
+led_ring_antigravity_shelf_top_distance_from_top = 43;
+
+translate([total_internal_width/2 - led_ring_antigravity_shelf_width/2, total_internal_length/2 - led_ring_antigravity_shelf_length/2 - led_ring_antigravity_shelf_distance_from_top, total_internal_height/2 - led_ring_antigravity_shelf_height/2]) cube([led_ring_antigravity_shelf_width,led_ring_antigravity_shelf_length,led_ring_antigravity_shelf_height], center=true);
+
+translate([total_internal_width/2 - led_ring_antigravity_shelf_top_width/2, total_internal_length/2 - led_ring_antigravity_shelf_top_length/2 - led_ring_antigravity_shelf_top_distance_from_top, total_internal_height/2 - led_ring_antigravity_shelf_top_height/2]) cube([led_ring_antigravity_shelf_top_width,led_ring_antigravity_shelf_top_length,led_ring_antigravity_shelf_top_height], center=true);
+
+translate([-1*(total_internal_width/2 - led_ring_antigravity_shelf_width/2), total_internal_length/2 - led_ring_antigravity_shelf_length/2 - led_ring_antigravity_shelf_distance_from_top, total_internal_height/2 - led_ring_antigravity_shelf_height/2]) cube([led_ring_antigravity_shelf_width,led_ring_antigravity_shelf_length,led_ring_antigravity_shelf_height], center=true);
+
+translate([-1*(total_internal_width/2 - led_ring_antigravity_shelf_top_width/2), total_internal_length/2 - led_ring_antigravity_shelf_top_length/2 - led_ring_antigravity_shelf_top_distance_from_top, total_internal_height/2 - led_ring_antigravity_shelf_top_height/2]) cube([led_ring_antigravity_shelf_top_width,led_ring_antigravity_shelf_top_length,led_ring_antigravity_shelf_top_height], center=true);
+
 
 module main_enclosure(){
     difference(){
