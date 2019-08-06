@@ -70,7 +70,9 @@ battery_slide_cutout_origin_y = -1 * (total_internal_length / 2);
 battery_slide_cutout_origin_z = -1 * (total_internal_height / 2 - wall_thickness - battery_slide_cutout_height/2);
 battery_slide_cutout_distance_from_bottom = 16;
 
-
+reset_hole_diameter = 1;
+reset_hole_distance_from_wall_x = 27;
+reset_hole_distance_from_wall_y = button_post_distance_from_wall_y;
 
 
 module main_enclosure(){
@@ -96,6 +98,9 @@ module main_enclosure(){
         
         // battery slide cutout
         translate([0,battery_slide_cutout_origin_y,battery_slide_cutout_origin_z + battery_slide_cutout_distance_from_bottom]) cube([battery_slide_cutout_width, wall_thickness + 2, battery_slide_cutout_height], center=true);
+        
+        // reset hole
+        translate([-1*(total_internal_width / 2 - wall_thickness - reset_hole_distance_from_wall_x), -1*(total_internal_length / 2 - wall_thickness - reset_hole_distance_from_wall_y) , -1*(total_internal_height/2 + wall_thickness/2)]) cylinder(d=reset_hole_diameter, h=wall_thickness * 2);
     }
 }
 
@@ -114,8 +119,8 @@ module xenon_mounting_posts(){
     
     
     //reinforcement cubes
-    reinforcement_cube_extra_x = 1.5;
-    reinforcement_cube_extra_y = 2.5;
+    reinforcement_cube_extra_x = 1.0;
+    reinforcement_cube_extra_y = 2.0;
     
     translate([outer_origin_x, outer_origin_y - 1, outer_z + xenon_post_outer_height/2]) cube([xenon_post_outer_diameter + reinforcement_cube_extra_x,xenon_post_outer_diameter + reinforcement_cube_extra_y,xenon_post_outer_height], center=true);
     translate([outer_origin_x + xenon_post_distance_apart_x, outer_origin_y - 1, outer_z + xenon_post_outer_height/2]) cube([xenon_post_outer_diameter + reinforcement_cube_extra_x,xenon_post_outer_diameter + reinforcement_cube_extra_y,xenon_post_outer_height], center=true);
