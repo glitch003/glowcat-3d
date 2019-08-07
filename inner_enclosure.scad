@@ -53,7 +53,7 @@ window_distance_from_wall_y = button_post_distance_from_wall_y;
 xenon_holder_length = 14;
 xenon_holder_width = 2;
 xenon_holder_height = 1;
-xenon_holder_origin_z = 8;
+xenon_holder_origin_z = 8.2;
 xenon_holder_origin_x = battery_holder_flaps_width;
 xenon_holder_origin_y = 22;
 
@@ -70,22 +70,22 @@ battery_slide_cutout_origin_y = -1 * (total_internal_length / 2);
 battery_slide_cutout_origin_z = -1 * (total_internal_height / 2 - wall_thickness - battery_slide_cutout_height/2);
 battery_slide_cutout_distance_from_bottom = 16;
 
-reset_hole_diameter = 1;
+reset_hole_diameter = 2;
 reset_hole_distance_from_wall_x = 27;
 reset_hole_distance_from_wall_y = button_post_distance_from_wall_y;
 
 led_ring_antigravity_shelf_height = 5;
 led_ring_antigravity_shelf_length = 1;
 led_ring_antigravity_shelf_width = 3;
-led_ring_antigravity_shelf_distance_from_top = 45;
+led_ring_antigravity_shelf_distance_from_top = 34;
 
 led_ring_antigravity_shelf_top_height = 1;
 led_ring_antigravity_shelf_top_length = 2;
 led_ring_antigravity_shelf_top_width = 3;
-led_ring_antigravity_shelf_top_distance_from_top = 43;
+led_ring_antigravity_shelf_top_distance_from_top = led_ring_antigravity_shelf_distance_from_top - 2;
 
 led_ring_top_holder_height = 1;
-led_ring_top_holder_length = 2;
+led_ring_top_holder_length = 1.5;
 led_ring_top_holder_width = 10;
 
 
