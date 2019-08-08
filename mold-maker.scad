@@ -4,7 +4,7 @@ mold_length = 90;
 
 cut_z_offset = -6;
 
-mounting_hole_diameter = 6;
+mounting_hole_diameter = 5;
 
 mounting_hole_1_x = mold_width/2 - mounting_hole_diameter/2 - 8;
 mounting_hole_1_y = 0;
@@ -18,15 +18,15 @@ mounting_hole_3_x = -1*(mold_width/2 - mounting_hole_diameter/2 - 2);
 mounting_hole_3_y = -1*(mold_length/2 - mounting_hole_diameter/2 - 2);
 mounting_hole_3_z = -1*(cut_z_offset);
 
-bottom_half_cut_x_offset = 0;
+bottom_half_cut_x_offset = 17;
 
 bottom_half_reg_hole_1_x = bottom_half_cut_x_offset;
-bottom_half_reg_hole_1_y = 15;
-bottom_half_reg_hole_1_z = -5;
+bottom_half_reg_hole_1_y = 40;
+bottom_half_reg_hole_1_z = -16;
 
 bottom_half_reg_hole_2_x = bottom_half_cut_x_offset;
-bottom_half_reg_hole_2_y = -15;
-bottom_half_reg_hole_2_z = -5;
+bottom_half_reg_hole_2_y = -1*bottom_half_reg_hole_1_y;
+bottom_half_reg_hole_2_z = bottom_half_reg_hole_1_z;
 
 
 mounting_hole_female_extra_diameter = 2;
@@ -128,6 +128,6 @@ module bottom_half_pos_x(){
 
 //
 translate([-10,mold_length + 10,mold_height/2]) bottom_half_neg_x();
-translate([10,mold_length + 10,mold_height/2]) bottom_half_pos_x();
 
+translate([10,mold_length + 10,mold_height/2]) bottom_half_pos_x();
 translate([0,0,mold_height/2]) rotate([0,180,180]) top_half();
