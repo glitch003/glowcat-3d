@@ -1,28 +1,28 @@
-mold_width = 96;
-mold_height = 76;
-mold_length = 90;
+mold_width = 76;
+mold_height = 120;
+mold_length = 100;
 
 cut_z_offset = 2;
 
-mounting_hole_diameter = 6;
+mounting_hole_diameter = 10;
 
-mounting_hole_1_x = mold_width/2 - mounting_hole_diameter/2 - 8;
+mounting_hole_1_x = mold_width/2 - mounting_hole_diameter/2 - 10;
 mounting_hole_1_y = 0;
 mounting_hole_1_z = -1*(mounting_hole_diameter/2 - cut_z_offset + 1);
 
-mounting_hole_2_x = -1*(mold_width/2 - mounting_hole_diameter/2 - 2);
-mounting_hole_2_y = mold_length/2 - mounting_hole_diameter/2 - 2;
+mounting_hole_2_x = -1*(mold_width/2 - mounting_hole_diameter/2 - 10);
+mounting_hole_2_y = mold_length/2 - mounting_hole_diameter/2 - 7;
 mounting_hole_2_z = -1*(mounting_hole_diameter/2 - cut_z_offset + 1);
 
-mounting_hole_3_x = -1*(mold_width/2 - mounting_hole_diameter/2 - 2);
-mounting_hole_3_y = -1*(mold_length/2 - mounting_hole_diameter/2 - 2);
+mounting_hole_3_x = -1*(mold_width/2 - mounting_hole_diameter/2 - 10);
+mounting_hole_3_y = -1*(mold_length/2 - mounting_hole_diameter/2 - 7);
 mounting_hole_3_z = -1*(mounting_hole_diameter/2 - cut_z_offset + 1);
 
-mounting_hole_female_extra_diameter = 2;
+mounting_hole_female_extra_diameter = 3;
 
 
 pour_hole_diameter = 15;
-pour_hole_length = 8;
+pour_hole_length = 15;
 //pour_hole_z = -15;
 
 
@@ -30,7 +30,7 @@ pour_hole_length = 8;
 module whole_mold(){
     difference(){
         cube([mold_width,mold_length, mold_height], center=true);
-        translate([-18,3,-30 + cut_z_offset]) import("low_poly_cat_v3.stl");
+        rotate([0,90,0]) translate([-8,0,-30 + cut_z_offset]) import("low_poly_cat_v3.stl");
 //        translate([-1*(mold_width/2 + 1),0,pour_hole_z]) rotate([0,90,0]) cylinder(h=pour_hole_length, d=pour_hole_diameter);
     }
 }
