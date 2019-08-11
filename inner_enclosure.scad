@@ -57,12 +57,12 @@ xenon_holder_origin_z = 8.2;
 xenon_holder_origin_x = battery_holder_flaps_width;
 xenon_holder_origin_y = 18;
 
-battery_top_holder_length = 18;
+battery_top_holder_length = 14;
 battery_top_holder_width = 2.5;
 battery_top_holder_height = 1;
 battery_top_holder_origin_z = led_holder_flaps_thickness + battery_holder_flaps_thickness - wall_thickness;
 battery_top_holder_origin_x = led_holder_flaps_width;
-battery_top_holder_origin_y = 28;
+battery_top_holder_origin_y = 32;
 
 battery_slide_cutout_height = 20;
 battery_slide_cutout_width = 42;
