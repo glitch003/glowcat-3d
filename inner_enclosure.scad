@@ -29,7 +29,7 @@ extra_space_between_battery_and_xenon = 2.1;
 battery_holder_flaps_thickness = xenon_post_outer_height + xenon_post_inner_height + extra_space_between_battery_and_xenon;
 battery_holder_flaps_width = 10;
 battery_holder_flaps_length = 30;
-battery_holder_flaps_offset_y = 10;
+battery_holder_flaps_offset_y = 6;
 
 space_between_battery_and_led_holder = 2;
     
@@ -55,14 +55,14 @@ xenon_holder_width = 2;
 xenon_holder_height = 1;
 xenon_holder_origin_z = 8.2;
 xenon_holder_origin_x = battery_holder_flaps_width;
-xenon_holder_origin_y = 22;
+xenon_holder_origin_y = 18;
 
 battery_top_holder_length = 18;
 battery_top_holder_width = 2.5;
 battery_top_holder_height = 1;
 battery_top_holder_origin_z = led_holder_flaps_thickness + battery_holder_flaps_thickness - wall_thickness;
 battery_top_holder_origin_x = led_holder_flaps_width;
-battery_top_holder_origin_y = 32;
+battery_top_holder_origin_y = 28;
 
 battery_slide_cutout_height = 20;
 battery_slide_cutout_width = 42;
