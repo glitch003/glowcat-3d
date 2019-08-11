@@ -42,7 +42,7 @@ usb_hole_width = 8;
 usb_hole_origin_z = 3.5;
 
 button_post_diameter = 3;
-button_post_height = 3.9;
+button_post_height = 3.7;
 button_post_distance_from_wall_x = 16.5;
 button_post_distance_from_wall_y = 18;
 
