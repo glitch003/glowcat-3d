@@ -74,7 +74,7 @@ reset_hole_diameter = 2;
 reset_hole_distance_from_wall_x = 27;
 reset_hole_distance_from_wall_y = button_post_distance_from_wall_y;
 
-led_ring_antigravity_shelf_height = 5;
+led_ring_antigravity_shelf_height = 3;
 led_ring_antigravity_shelf_length = 1;
 led_ring_antigravity_shelf_width = 3;
 led_ring_antigravity_shelf_distance_from_top = 34;
@@ -94,6 +94,9 @@ lanyard_slot_length = wall_thickness * 2;
 lanyard_slot_width = 4;
 lanyard_slot_origin_z = 6;
 lanyard_slot_origin_x = 6;
+
+battery_wire_channel_width = 1.6;
+battery_wire_channel_height = 3.5;
 
 
 
@@ -187,11 +190,23 @@ module led_holder(){
     led_z = -1*(total_internal_height/2 - wall_thickness - led_holder_flaps_thickness/2 - battery_holder_flaps_thickness);
     led_origin_x = total_internal_width/2 - led_holder_flaps_width/2;
     
-    translate([led_origin_x,battery_holder_flaps_offset_y,led_z]) cube([led_holder_flaps_width,led_holder_flaps_length,led_holder_flaps_thickness], center=true);
+    // battery wire cutouts
+    difference(){
+        
+        translate([led_origin_x,battery_holder_flaps_offset_y,led_z]) cube([led_holder_flaps_width,led_holder_flaps_length,led_holder_flaps_thickness], center=true);
+        
+        translate([total_internal_width/2 - battery_wire_channel_width/2, battery_holder_flaps_offset_y, -1*(total_internal_height/2 - battery_holder_flaps_thickness - led_holder_flaps_thickness)]) cube([battery_wire_channel_width,led_holder_flaps_length + 10, battery_wire_channel_height], center=true);
+        
+    }
+    
     translate([-1*led_origin_x,battery_holder_flaps_offset_y,led_z]) cube([led_holder_flaps_width,led_holder_flaps_length,led_holder_flaps_thickness], center=true);
     
     
 }
+
+//translate([total_internal_width/2 - battery_wire_channel_width/2, battery_holder_flaps_offset_y, -1*(total_internal_height/2 - battery_holder_flaps_thickness - led_holder_flaps_thickness)]) cube([battery_wire_channel_width,led_holder_flaps_length + 10, battery_wire_channel_height], center=true);
+
+
 
 module button_post(){
 //    button_post_diameter = 3;
